@@ -9,9 +9,9 @@ Perbandingan query **JOIN + agregasi** (sebelum) dengan query **kolom turunan ha
 
 |  No  |           Nama          |     NIM     |
 |:-----|:------------------------|:------------|
-|  1   | [Izzata Wihanangku]     | [264311072] |
-|  2   | [Mutya Yuwan Ramadhani] | [264311078] |
-|  3   | [Putri Nurhaliza]       | [264311081] |
+|  1   | Izzata Wihanangku    | 264311072 |
+|  2   | Mutya Yuwan Ramadhani | 264311078 |
+|  3   | Putri Nurhaliza       | 264311081 |
 
 ---
 

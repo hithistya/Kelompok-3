@@ -54,21 +54,11 @@ Praktikum ini membandingkan dua cara memperoleh total belanja per pelanggan:
 | [README.md](README.md)                                              | Dokumentasi praktikum          |
 | [schema_data.sql](schema_data.sql)                                  | Struktur tabel dan data contoh |
 | [praktikum_denormalisasi.sql](praktikum_denormalisasi.sql)          | Script Tahap 1, 2, dan 3       |
-| [Bukti Eksekusi/](Bukti Eksekusi/)                                  | Folder bukti eksekusi          |
-| [tahap1_join.png](Bukti Eksekusi/tahap1_join.png)                   | Screenshot hasil Tahap 1       |
-| [tahap3_denormalisasi.png](Bukti Eksekusi/tahap3_denormalisasi.png) | Screenshot hasil Tahap 3       |
+| [Bukti Eksekusi/](Bukti%20Eksekusi/)                                  | Folder bukti eksekusi          |
+| [tahap1_join.png](Bukti%20Eksekusi/tahap1_join.png)                   | Screenshot hasil Tahap 1       |
+| [tahap3_denormalisasi.png](Bukti&20Eksekusi/tahap3_denormalisasi.png) | Screenshot hasil Tahap 3       |
 
 ---
-
-
-## Cara Menjalankan
-
-1. Buat database baru, lalu impor [schema_data.sql](schema_data.sql) (menu **Import** di phpMyAdmin).
-2. Buka tab **SQL**, lalu jalankan isi [praktikum_denormalisasi.sql](praktikum_denormalisasi.sql) **per tahap** (jangan sekaligus) agar hasil tiap tahap terlihat.
-
----
-
-## Alur Praktikum
 
 ### Tahap 1: Query JOIN + Agregasi (Sebelum)
 
@@ -140,11 +130,11 @@ FROM pelanggan;
 
 **Tahap 1 (JOIN)**
 
-[Hasil Tahap 1](Bukti Eksekusi/tahap1_join.png)
+[Hasil Tahap 1](Bukti%20Eksekusi/tahap1_join.png)
 
 **Tahap 3 (Denormalisasi)**
 
-[Hasil Tahap 3](Bukti Eksekusi/tahap3_denormalisasi.png)
+[Hasil Tahap 3](Bukti%20Eksekusi/tahap3_denormalisasi.png)
 
 ---
 

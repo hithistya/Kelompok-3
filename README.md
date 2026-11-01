@@ -54,8 +54,8 @@ Praktikum ini membandingkan dua cara memperoleh total belanja per pelanggan:
 | [schema_data.sql](schema_data.sql)                                  | Struktur tabel dan data contoh |
 | [praktikum_denormalisasi.sql](praktikum_denormalisasi.sql)          | Script Tahap 1, 2, dan 3       |
 | [Bukti Eksekusi/](Bukti%20Eksekusi/)                                  | Folder bukti eksekusi          |
-| [tahap1_join.png](Bukti%20Eksekusi/tahap%201.png)                   | Screenshot hasil Tahap 1       |
-| [tahap3_denormalisasi.png](Bukti&20Eksekusi/tahap%203.png) | Screenshot hasil Tahap 3       |
+| ![Hasil Tahap 1](Bukti%20Eksekusi/Tahap%201.png)                   | Screenshot hasil Tahap 1       |
+| ![Hasil Tahap 3](Bukti%20Eksekusi/Tahap%203.png) | Screenshot hasil Tahap 3       |
 
 ---
 
@@ -129,11 +129,11 @@ FROM pelanggan;
 
 **Tahap 1 (JOIN)**
 
-[Hasil Tahap 1](Bukti%20Eksekusi/tahap%201.png)
+![Hasil Tahap 1](Bukti%20Eksekusi/Tahap%201.png)
 
 **Tahap 3 (Denormalisasi)**
 
-[Hasil Tahap 3](Bukti%20Eksekusi/tahap%203.png)
+![Hasil Tahap 3](Bukti%20Eksekusi/Tahap%203.png)
 
 ---
 

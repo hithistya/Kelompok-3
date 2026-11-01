@@ -20,7 +20,6 @@ Perbandingan query **JOIN + agregasi** (sebelum) dengan query **kolom turunan ha
 * [Deskripsi](#deskripsi)
 * [Struktur Database](#struktur-database)
 * [Isi Repositori](#isi-repositori)
-* [Cara Menjalankan](#cara-menjalankan)
 * [Alur Praktikum](#alur-praktikum)
 * [Hasil Perbandingan](#hasil-perbandingan)
 * [Risiko Denormalisasi](#risiko-denormalisasi)

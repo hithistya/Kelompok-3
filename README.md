@@ -49,7 +49,7 @@ Praktikum ini membandingkan dua cara memperoleh total belanja per pelanggan:
 |                            Berkas / Folder                          |           Keterangan           |
 |:--------------------------------------------------------------------|:-------------------------------|
 | [README.md](README.md)                                              | Dokumentasi praktikum          |
-| [praktikum_denormalisasi.sql](praktikum_denormalisasi.sql)          | Script Tahap 1, 2, dan 3       |
+| [berkas.sql](berkas.sql)          | Script Tahap 1, 2, dan 3       |
 | [Bukti Eksekusi/](Bukti%20Eksekusi/)                                  | Folder bukti eksekusi          |
 | ![Hasil Tahap 1](Bukti%20Eksekusi/Tahap%201.png)                   | Screenshot hasil Tahap 1       |
 | ![Hasil Tahap 3](Bukti%20Eksekusi/Tahap%203.png) | Screenshot hasil Tahap 3       |

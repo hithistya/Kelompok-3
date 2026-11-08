@@ -1,7 +1,4 @@
-# Modul9_Kelompok 3
-
-# Praktikum Denormalisasi: Basis Data Penjualan Sederhana
-Perbandingan query **JOIN + agregasi** (sebelum) dengan query **kolom turunan hasil denormalisasi** (sesudah) pada kasus fiktif basis data penjualan.
+# Kelompok 3
 
 ---
 ## Identitas

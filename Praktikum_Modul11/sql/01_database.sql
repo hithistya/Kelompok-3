@@ -1,0 +1,2 @@
+CREATE DATABASE db_laporan_kerusakan_jalan;
+USE db_laporan_kerusakan_jalan;

@@ -12,7 +12,7 @@ lalu Admin atau Petugas memverifikasi dan mengubah status laporan menjadi Menung
 | DBMS | MySQL Community Server - GPL 8.0.30 |
 | Storage engine | InnoDB |
 | Pengelola database | phpMyAdmin 5.2.2 (localhost:3306) |
-| Database | `db_kerusakan_jalan` (dibuat pada Modul 10) |
+| Database | `db_kerusakan_jalan`  |
 | Version control | Git dan GitHub |
 
 **Lima tabel proyek:** `role`, `pengguna`, `laporan`, `hasil_deteksi`, `riwayat_status`.

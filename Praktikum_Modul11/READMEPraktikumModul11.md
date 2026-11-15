@@ -1,4 +1,4 @@
-## 2. Tentang Proyek
+## 1. Tentang Proyek
 
 **Sistem Informasi Pelaporan dan Deteksi Kerusakan Jalan Berbasis AI.**
 
@@ -17,7 +17,7 @@ lalu Admin atau Petugas memverifikasi dan mengubah status laporan menjadi Menung
 
 **Lima tabel proyek:** `role`, `pengguna`, `laporan`, `hasil_deteksi`, `riwayat_status`.
 
-## 3. Yang Dikerjakan pada Modul 11
+## 2. Yang Dikerjakan pada Modul 11
 
 1. **Identifikasi dan perbandingan DBMS:** MySQL, PostgreSQL, dan MongoDB.
 2. **Implementasi JSON:** menambah kolom `detail_deteksi` bertipe JSON pada tabel `hasil_deteksi`, lalu menguji INSERT, SELECT, UPDATE, dan DELETE atribut JSON.
@@ -36,7 +36,7 @@ tanpa banyak kolom kosong.
 
 Kolom `kotak_batas` sudah bertipe JSON sejak Modul 10.
 
-## 4. Isi Repository
+## 3. Isi Repository
 
 ```
 praktikum_modul11/
@@ -71,7 +71,7 @@ praktikum_modul11/
 | I | **INSERT** dan **DELETE** baris uji (id 105) |
 | J | Uji validasi: JSON tidak valid harus ditolak (**error #3140 memang diharapkan**) |
 
-## 5. Cara Menjalankan
+## 4. Cara Menjalankan
 
 **Persiapan**
 1. Jalankan MySQL 8.0 dan buka phpMyAdmin.
@@ -97,7 +97,7 @@ WHERE id_deteksi >= 101;
 
 Hasil yang benar: 4 baris (id 101 sampai 104) dengan isi JSON yang berbeda tiap jenis kerusakan.
 
-## 6. Bukti Tangkapan Layar
+## 5. Bukti Tangkapan Layar
 <img width="1241" height="210" alt="WhatsApp Image 2026-11-13 at 13 01 22" src="https://github.com/user-attachments/assets/3dead47e-2c7b-4f41-8294-87095035bb7f" />
 <img width="1300" height="635" alt="WhatsApp Image 2026-11-13 at 13 16 02" src="https://github.com/user-attachments/assets/379ebd52-5a71-4262-a71d-f52628d8aa35" />
 <img width="1299" height="351" alt="WhatsApp Image 2026-11-13 at 13 17 44" src="https://github.com/user-attachments/assets/c525e282-c34d-4db9-b68f-6d6800f5e565" />

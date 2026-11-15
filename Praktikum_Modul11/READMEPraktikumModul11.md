@@ -52,7 +52,6 @@ praktikum_modul11/
 |   `-- worksheet_modul11.pdf  laporan lembar kerja
 |-- diagram/
 |   `-- pemodelan_objek.png    diagram class
-|-- bukti/                     tangkapan layar pengujian (diisi kelompok)
 |-- modul11.sql                gabungan 01 sampai 04 (jalankan sekali jalan)
 `-- README.md
 ```

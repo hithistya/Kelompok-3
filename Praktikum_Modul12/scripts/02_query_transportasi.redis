@@ -1,31 +1,12 @@
-# ===== B. QUERY TRANSPORTASI =====
+-- Langkah 1: Migrasi Data (Membuat Hash per Trip & Sorted Set indeks per Rute berdasarkan Unix Timestamp)
+HSET route:12 route_name "Koridor Pusat–Terminal"
+HSET trip:T001 route_id 12 started_at "2026-11-02 07:10" status "completed"
+HSET trip:T003 route_id 12 started_at "2026-11-03 08:05" status "delayed"
+HSET trip:T004 route_id 18 started_at "2026-10-29 06:50" status "completed"
+HSET trip:T005 route_id 12 started_at "2026-11-05 17:20" status "completed"
+ZADD route:12:trips 1793603400 "T001" 1793693100 "T003" 1793899200 "T005"
 
-# join + proyeksi di sisi aplikasi, ulangi untuk tiap id hasil seleksi:
-HMGET laporan:101 id_laporan alamat waktu_lapor
-SMEMBERS laporan:101:deteksi
-HMGET deteksi:101 jenis_kerusakan tingkat_keyakinan
-HMGET laporan:103 id_laporan alamat waktu_lapor
-SMEMBERS laporan:103:deteksi
-HMGET deteksi:103 jenis_kerusakan tingkat_keyakinan
-
-# Method ubahStatus() + catatPerubahan() 
-INCR seq:riwayat
- (misal hasilnya 9)
-MULTI
-HSET laporan:101 status diproses
-ZREM laporan:menunggu 101
-ZADD laporan:diproses 1793607300 101
-HSET riwayat:9 id_riwayat 9 id_laporan 101 id_pengguna 2 waktu_perubahan "2026-11-07 09:00:00" status_baru diproses catatan "diverifikasi petugas"
-RPUSH laporan:101:riwayat 9
-SADD pengguna:2:riwayat 9
-EXEC
-
-# ===== C. INSPEKSI (Redis tidak punya EXPLAIN) =====
-COMMAND DOCS zrangebyscore
-OBJECT ENCODING laporan:menunggu
-MEMORY USAGE laporan:101
-CONFIG SET slowlog-log-slower-than 0
-SLOWLOG RESET
-ZRANGEBYSCORE laporan:menunggu 1793491200 +inf
-SLOWLOG GET 5
-CONFIG SET slowlog-log-slower-than 10000
+-- Langkah 2: Jalankan Query (Filter waktu >= 2026-11-01 [1793491200] lalu ambil detail)
+ZRANGEBYSCORE route:12:trips 1793491200 +inf
+HGETALL trip:T001
+HGET route:12 route_name

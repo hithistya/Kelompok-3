@@ -1,0 +1,41 @@
+===== BAGIAN A - sebagai ADMIN: buat user per peran =====
+ACL SETUSER petugas_user on >GantiDenganPasswordKuat! ~laporan:* ~deteksi:* ~riwayat:* ~pengguna:*:riwayat ~seq:riwayat +@read +hset +zadd +zrem +rpush +sadd +incr +multi +exec
+ACL SETUSER pelapor_user on >GantiDenganPasswordKuat2! ~laporan:* ~deteksi:* ~pengguna:*:laporan ~pengguna:*:riwayat ~riwayat:* ~seq:laporan ~seq:deteksi ~seq:riwayat +@read +hset +sadd +zadd +rpush +incr
+ACL SETUSER admin_user on >GantiDenganPasswordKuat3! ~* +@read +@write -@dangerous
+ACL GETUSER petugas_user
+ACL LIST
+
+===== BAGIAN B - login sebagai petugas_user =====
+HMGET laporan:101 alamat status
+# diharapkan: berhasil
+ZRANGEBYSCORE laporan:menunggu 1793491200 +inf
+# diharapkan: berhasil (101, 103)
+DEL laporan:101
+# diharapkan: (error) NOPERM ... no permissions to run the 'del' command
+DEL deteksi:101
+# diharapkan: NOPERM
+HGETALL pengguna:1
+# diharapkan: NOPERM (key pengguna:<id> di luar pola key yang diizinkan)
+
+# ===== BAGIAN B2 - login sebagai pelapor_user =====
+# AUTH pelapor_user GantiDenganPasswordKuat2!
+HMGET laporan:101 alamat status
+# diharapkan: berhasil
+ZREM laporan:menunggu 101
+# diharapkan: NOPERM (pelapor tidak boleh mengubah index status)
+DEL laporan:101
+# diharapkan: NOPERM
+
+# ===== BAGIAN C - kembali sebagai ADMIN: cabut hak baca petugas_user =====
+ACL SETUSER petugas_user -@read
+ACL GETUSER petugas_user
+
+# ===== BAGIAN D - login ULANG sebagai petugas_user =====
+HMGET laporan:101 alamat status
+# diharapkan: NOPERM (tidak lagi diizinkan)
+
+# Catatan: ACL Redis membatasi perintah dan pola key, bukan baris per pengguna.
+# Aturan "pelapor hanya mengubah laporannya sendiri" dijaga di aplikasi.
+
+# ===== Pembersihan (opsional, sebagai ADMIN) =====
+# ACL DELUSER petugas_user pelapor_user admin_user

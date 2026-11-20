@@ -1,0 +1,65 @@
+# ===== 1. Pengguna (role: admin, petugas, pelapor) =====
+HSET pengguna:1 id_pengguna 1 nama "Admin Sistem" email admin@contoh.id password PLACEHOLDER_HASH role admin
+HSET pengguna:2 id_pengguna 2 nama "Petugas Satu" email petugas@contoh.id password PLACEHOLDER_HASH role petugas
+HSET pengguna:3 id_pengguna 3 nama "Pelapor Satu" email pelapor1@contoh.id password PLACEHOLDER_HASH role pelapor
+HSET pengguna:4 id_pengguna 4 nama "Pelapor Dua" email pelapor2@contoh.id password PLACEHOLDER_HASH role pelapor
+SETNX pengguna:email:admin@contoh.id 1
+SETNX pengguna:email:petugas@contoh.id 2
+SETNX pengguna:email:pelapor1@contoh.id 3
+SETNX pengguna:email:pelapor2@contoh.id 4
+SADD pengguna:idx:role:admin 1
+SADD pengguna:idx:role:petugas 2
+SADD pengguna:idx:role:pelapor 3 4
+SET seq:pengguna 4
+
+# ===== 2. Laporan =====
+HSET laporan:101 id_laporan 101 id_pengguna 3 tingkat_keparahan tinggi foto lapor101.jpg latitude -7.6298000 longitude 111.5239000 alamat "Jl. Pahlawan No. 10" keterangan "Lubang besar di badan jalan" waktu_lapor "2026-11-02 08:15:00" status menunggu
+HSET laporan:102 id_laporan 102 id_pengguna 3 tingkat_keparahan sedang foto lapor102.jpg latitude -7.6310000 longitude 111.5300000 alamat "Jl. Diponegoro No. 5" keterangan "Retak memanjang" waktu_lapor "2026-10-30 09:00:00" status menunggu
+HSET laporan:103 id_laporan 103 id_pengguna 4 tingkat_keparahan rendah foto lapor103.jpg latitude -7.6250000 longitude 111.5200000 alamat "Jl. Merdeka No. 22" keterangan "Kulit buaya" waktu_lapor "2026-11-04 10:30:00" status menunggu
+HSET laporan:104 id_laporan 104 id_pengguna 4 tingkat_keparahan sedang foto lapor104.jpg latitude -7.6280000 longitude 111.5260000 alamat "Jl. Sudirman No. 8" keterangan "Retak melintang" waktu_lapor "2026-11-05 14:00:00" status diproses
+HSET laporan:105 id_laporan 105 id_pengguna 3 tingkat_keparahan rendah foto lapor105.jpg latitude -7.6330000 longitude 111.5180000 alamat "Jl. Ahmad Yani No. 3" keterangan "Lubang kecil" waktu_lapor "2026-11-06 07:30:00" status selesai
+SET seq:laporan 105
+SADD pengguna:3:laporan 101 102 105
+SADD pengguna:4:laporan 103 104
+ZADD laporan:menunggu 1793607300 101 1793350800 102 1793788200 103
+ZADD laporan:diproses 1793887200 104
+ZADD laporan:selesai 1793950200 105
+SADD laporan:idx:keparahan:tinggi 101
+SADD laporan:idx:keparahan:sedang 102 104
+SADD laporan:idx:keparahan:rendah 103 105
+
+===== 3. HasilDeteksi =====
+HSET deteksi:101 id_deteksi 101 id_laporan 101 jenis_kerusakan "Lubang" kotak_batas '{"x":120,"y":80,"lebar":200,"tinggi":150}' tingkat_keyakinan 95.50 detail_deteksi '{"diameter_cm":40,"kedalaman_cm":8,"berair":false}'
+HSET deteksi:105 id_deteksi 105 id_laporan 105 jenis_kerusakan "Lubang" kotak_batas '{"x":30,"y":20,"lebar":90,"tinggi":80}' tingkat_keyakinan 92.10 detail_deteksi '{"diameter_cm":25,"kedalaman_cm":5,"berair":true}'
+HSET deteksi:102 id_deteksi 102 id_laporan 102 jenis_kerusakan "Retak Memanjang" kotak_batas '{"x":50,"y":60,"lebar":180,"tinggi":90}' tingkat_keyakinan 89.75 detail_deteksi '{"panjang_m":3.2,"lebar_retak_mm":5,"arah":"sejajar sumbu jalan"}'
+HSET deteksi:104 id_deteksi 104 id_laporan 104 jenis_kerusakan "Retak Melintang" kotak_batas '{"x":70,"y":40,"lebar":120,"tinggi":60}' tingkat_keyakinan 85.30 detail_deteksi '{"panjang_m":1.8,"lebar_retak_mm":6}'
+HSET deteksi:103 id_deteksi 103 id_laporan 103 jenis_kerusakan "Kulit Buaya" kotak_batas '{"x":100,"y":100,"lebar":250,"tinggi":180}' tingkat_keyakinan 97.20 detail_deteksi '{"luas_m2":2.5,"tingkat_pelapukan":"sedang","petak_terdampak":["A1","A2"]}'
+SET seq:deteksi 105
+SADD laporan:101:deteksi 101
+SADD laporan:102:deteksi 102
+SADD laporan:103:deteksi 103
+SADD laporan:104:deteksi 104
+SADD laporan:105:deteksi 105
+SADD deteksi:idx:jenis:lubang 101 105
+SADD deteksi:idx:jenis:retak_memanjang 102
+SADD deteksi:idx:jenis:retak_melintang 104
+SADD deteksi:idx:jenis:kulit_buaya 103
+
+# ===== 4. RiwayatStatus =====
+HSET riwayat:1 id_riwayat 1 id_laporan 101 id_pengguna 3 waktu_perubahan "2026-11-02 08:15:00" status_baru menunggu catatan "laporan dibuat"
+HSET riwayat:2 id_riwayat 2 id_laporan 102 id_pengguna 3 waktu_perubahan "2026-10-30 09:00:00" status_baru menunggu catatan "laporan dibuat"
+HSET riwayat:3 id_riwayat 3 id_laporan 103 id_pengguna 4 waktu_perubahan "2026-11-04 10:30:00" status_baru menunggu catatan "laporan dibuat"
+HSET riwayat:4 id_riwayat 4 id_laporan 104 id_pengguna 4 waktu_perubahan "2026-11-05 14:00:00" status_baru menunggu catatan "laporan dibuat"
+HSET riwayat:5 id_riwayat 5 id_laporan 104 id_pengguna 2 waktu_perubahan "2026-11-05 15:00:00" status_baru diproses catatan "diverifikasi petugas"
+HSET riwayat:6 id_riwayat 6 id_laporan 105 id_pengguna 3 waktu_perubahan "2026-11-06 07:30:00" status_baru menunggu catatan "laporan dibuat"
+HSET riwayat:7 id_riwayat 7 id_laporan 105 id_pengguna 2 waktu_perubahan "2026-11-06 09:00:00" status_baru diproses catatan "diverifikasi petugas"
+HSET riwayat:8 id_riwayat 8 id_laporan 105 id_pengguna 2 waktu_perubahan "2026-11-06 16:00:00" status_baru selesai catatan "perbaikan selesai"
+SET seq:riwayat 8
+RPUSH laporan:101:riwayat 1
+RPUSH laporan:102:riwayat 2
+RPUSH laporan:103:riwayat 3
+RPUSH laporan:104:riwayat 4 5
+RPUSH laporan:105:riwayat 6 7 8
+SADD pengguna:3:riwayat 1 2 6
+SADD pengguna:4:riwayat 3 4
+SADD pengguna:2:riwayat 5 7 8

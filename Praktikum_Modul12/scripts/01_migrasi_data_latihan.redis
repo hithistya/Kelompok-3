@@ -1,0 +1,12 @@
+-- Langkah 1: Migrasi Data (Membuat Hash per Trip & Sorted Set indeks per Rute berdasarkan Unix Timestamp)
+HSET route:12 route_name "Koridor Pusat–Terminal"
+HSET trip:T001 route_id 12 started_at "2026-11-02 07:10" status "completed"
+HSET trip:T003 route_id 12 started_at "2026-11-03 08:05" status "delayed"
+HSET trip:T004 route_id 18 started_at "2026-10-29 06:50" status "completed"
+HSET trip:T005 route_id 12 started_at "2026-11-05 17:20" status "completed"
+ZADD route:12:trips 1793603400 "T001" 1793693100 "T003" 1793899200 "T005"
+
+-- Langkah 2: Jalankan Query (Filter waktu >= 2026-11-01 [1793491200] lalu ambil detail)
+ZRANGEBYSCORE route:12:trips 1793491200 +inf
+HGETALL trip:T001
+HGET route:12 route_name
